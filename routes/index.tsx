@@ -21,6 +21,13 @@ export default async function Home() {
       }
       return acc;
     }, 0);
+    const difference = playedMatches.reduce((acc, match) => {
+      if (match.player1 === player._id) {
+        return acc + (match.score[0] - match.score[1]);
+      } else {
+        return acc + (match.score[1] - match.score[0]);
+      }
+    }, 0);
 
     return {
       ...acc,
@@ -30,6 +37,7 @@ export default async function Home() {
           played: playedMatches.length,
           won: wonMatches,
           lost: playedMatches.length - wonMatches,
+          difference,
         },
       },
     };
@@ -43,13 +51,15 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col">
       <div className="m-4 flex-grow">
-      {Object.values(groups).map((group, index) => (
-        <div key={index} className="mb-4 w-full bg-gray-100">
-          <GroupTable data={group} />
-        </div>
-      ))}
+        {Object.values(groups).map((group, index) => (
+          <div key={index} className="mb-4 w-full bg-gray-100">
+            <GroupTable data={group} />
+          </div>
+        ))}
       </div>
-      <a href="/result" className="w-full text-center p-2 bg-green-300">Añadir resultado</a>
+      <a href="/result" className="w-full text-center p-2 bg-green-300">
+        Añadir resultado
+      </a>
     </div>
   );
 }

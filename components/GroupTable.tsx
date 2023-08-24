@@ -2,6 +2,7 @@ type PlayerPoints = {
   played: number;
   won: number;
   lost: number;
+  difference: number;
 };
 
 type Props = {
@@ -9,8 +10,13 @@ type Props = {
 };
 
 const GroupTable = ({ data }: Props) => {
-  const orderedData = Object.entries(data).sort(([_, apoints], [__, bpoints]) =>
-    bpoints.won - apoints.won
+  const orderedData = Object.entries(data).sort(
+    ([_, apoints], [__, bpoints]) => {
+      if (bpoints.won === apoints.won) {
+        return bpoints.difference - apoints.difference;
+      }
+      return bpoints.won - apoints.won;
+    },
   );
 
   return (
@@ -26,15 +32,19 @@ const GroupTable = ({ data }: Props) => {
           G
         </th>
         <th className="p-1">
-          D
+          P
+        </th>
+        <th>
+          + / -
         </th>
       </tr>
-      {orderedData.map(([player, points]) => (
-        <tr key={player}>
+      {orderedData.map(([player, points], index) => (
+        <tr key={player} className={index > 1 ? "bg-red-100" : undefined}>
           <td className="max-w-0 p-1">{player}</td>
           <td className="text-center p-1">{points.played}</td>
           <td className="text-center p-1">{points.won}</td>
           <td className="text-center p-1">{points.lost}</td>
+          <td className="text-center p-1">{points.difference}</td>
         </tr>
       ))}
     </table>
