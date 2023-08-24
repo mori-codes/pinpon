@@ -4,19 +4,25 @@
 
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/api/reset.ts";
-import * as $3 from "./routes/greet/[name].tsx";
-import * as $4 from "./routes/index.tsx";
-import * as $5 from "./routes/result.tsx";
+import * as $2 from "./routes/_layout.tsx";
+import * as $3 from "./routes/api/reset.ts";
+import * as $4 from "./routes/championship.tsx";
+import * as $5 from "./routes/greet/[name].tsx";
+import * as $6 from "./routes/history.tsx";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/result.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
     "./routes/_app.tsx": $1,
-    "./routes/api/reset.ts": $2,
-    "./routes/greet/[name].tsx": $3,
-    "./routes/index.tsx": $4,
-    "./routes/result.tsx": $5,
+    "./routes/_layout.tsx": $2,
+    "./routes/api/reset.ts": $3,
+    "./routes/championship.tsx": $4,
+    "./routes/greet/[name].tsx": $5,
+    "./routes/history.tsx": $6,
+    "./routes/index.tsx": $7,
+    "./routes/result.tsx": $8,
   },
   islands: {},
   baseUrl: import.meta.url,
