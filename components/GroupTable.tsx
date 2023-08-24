@@ -10,7 +10,7 @@ type Props = {
 
 const GroupTable = ({ data }: Props) => {
   const orderedData = Object.entries(data).sort(([_, apoints], [__, bpoints]) =>
-    apoints.won - bpoints.won
+    bpoints.won - apoints.won
   );
 
   return (
