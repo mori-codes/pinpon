@@ -1,7 +1,7 @@
 import { getPayload } from "./getPayload.ts";
-import { FinishedMatch } from "./types.ts";
+import { Match } from "./types.ts";
 
-const fetchAllFinishedMatches = async () => {
+const fetchAllFinalMatches = async () => {
   const BASE_URL = Deno.env.get("MONGODB_BASE_URL");
   const API_KEY = Deno.env.get("MONGODB_API_KEY");
 
@@ -18,17 +18,17 @@ const fetchAllFinishedMatches = async () => {
     },
     body: getPayload("matches", {
       filter: {
-        finished: true,
+        type: "final",
       },
       sort: {
-        finishedDate: -1
-      }
+        index: 1,
+      },
     }),
   });
 
   const data = await response.json();
 
-  return data.documents as Array<FinishedMatch>;
+  return data.documents as Array<Match>;
 };
 
-export { fetchAllFinishedMatches };
+export { fetchAllFinalMatches };

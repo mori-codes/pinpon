@@ -2,7 +2,7 @@ import { LayoutProps } from "$fresh/server.ts";
 
 export default function Layout({ Component, url }: LayoutProps) {
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col min-h-screen">
       <div className="w-full grid grid-cols-3">
         <a
           className={`py-4 text-xl text-center ${

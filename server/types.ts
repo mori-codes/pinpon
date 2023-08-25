@@ -11,7 +11,7 @@ type UnfinishedMatch = {
   player2?: Player["_id"];
   score?: [number, number];
   type: "group" | "final";
-  index: undefined | 0 | 1 | 2 | 3 | 4 | 5;
+  index: undefined | 0 | 1 | 2 | 3 | 4 | 5 | 6;
   finishedDate?: string
 };
 
@@ -22,7 +22,7 @@ type FinishedMatch = {
   player2: Player["_id"];
   score: [number, number];
   type: "group" | "final";
-  index: undefined | 0 | 1 | 2 | 3 | 4 | 5;
+  index: undefined | 0 | 1 | 2 | 3 | 4 | 5 | 6;
   finishedDate: string
 };
 

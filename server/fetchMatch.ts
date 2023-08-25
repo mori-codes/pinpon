@@ -1,7 +1,7 @@
 import { getPayload } from "./getPayload.ts";
-import { FinishedMatch } from "./types.ts";
+import { Match } from "./types.ts";
 
-const fetchAllFinishedMatches = async () => {
+const fetchMatch = async (index: number) => {
   const BASE_URL = Deno.env.get("MONGODB_BASE_URL");
   const API_KEY = Deno.env.get("MONGODB_API_KEY");
 
@@ -9,7 +9,7 @@ const fetchAllFinishedMatches = async () => {
     throw new Error("Unable to retrieve needed ENV variables");
   }
 
-  const response = await fetch(`${BASE_URL}/action/find`, {
+  const response = await fetch(`${BASE_URL}/action/findOne`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,17 +18,14 @@ const fetchAllFinishedMatches = async () => {
     },
     body: getPayload("matches", {
       filter: {
-        finished: true,
+        index,
       },
-      sort: {
-        finishedDate: -1
-      }
     }),
   });
 
   const data = await response.json();
 
-  return data.documents as Array<FinishedMatch>;
+  return data.document as Match;
 };
 
-export { fetchAllFinishedMatches };
+export { fetchMatch };
